@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
+import NotFound from "./pages/404";
+
+import ProductDetail from "./pages/product-detail";
+import AddProductForm from "./pages/create-product";
 
 function App() {
+  const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+    axios.get("{BASE_URL}/products").then((res) => {
+      setProduct(res.data);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/product-detail/:id" element={<ProductDetail />} />
+      <Route path="/add-product" element={<AddProductForm />} />
+      <Route path="/*" element={<NotFound />} />
+    </Routes>
   );
 }
 
