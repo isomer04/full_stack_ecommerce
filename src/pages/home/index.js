@@ -21,11 +21,18 @@ const DetailLink = styled(Link)({
 function App() {
   const [products, setProduct] = useState([]);
   let [searchParams, setSearchParams] = useSearchParams();
+
+
   useEffect(() => {
-    axios
-      .get("https://api.escuelajs.co/api/v1/products?offset=0&limit=30")
-      .then((res) => {
+    //  axios.get(
+    //   `${process.env.REACT_APP_BASE_URL}/products`
+    // )     
+    axios.get(
+      `https://fakestoreapi.com/products`
+    ) 
+    .then((res) => {
         setProduct(res.data);
+        console.log(products + "products")
       });
   }, []);
 
@@ -43,7 +50,7 @@ function App() {
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   sx={{ height: 140 }}
-                  image={product.images[0]}
+                  image={product.image}
                   title="green iguana"
                 />
                 <CardContent>

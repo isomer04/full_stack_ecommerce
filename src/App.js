@@ -10,8 +10,11 @@ import AddProductForm from "./pages/create-product";
 function App() {
   const [products, setProduct] = useState([]);
 
+  // `${process.env.REACT_APP_BASE_URL}/products/${id}`
+
+  
   useEffect(() => {
-    axios.get("{BASE_URL}/products").then((res) => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/products`).then((res) => {
       setProduct(res.data);
     });
   }, []);

@@ -2,7 +2,6 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import Navigation from "../../components/Navigation/navigation";
 
 const ProductDetail = () => {
   const { id } = useParams();
